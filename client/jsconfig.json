@@ -1,0 +1,7 @@
+//this must be at the roo
+{
+  "compilerOptions": {
+    "baseUrl": "./src"
+  },
+  "include": ["src"]
+}
