@@ -20,6 +20,7 @@ const Friend = ({ friendId, name, subtitle, userPicturePath }) => {
 	const medium = palette.neutral.medium;
 
 	const isFriend = friends.find((friend) => friend._id === friendId);
+	const isCurrentUser = _id === friendId;
 
 	const patchFriend = async () => {
 		const response = await fetch(
@@ -35,6 +36,7 @@ const Friend = ({ friendId, name, subtitle, userPicturePath }) => {
 		const data = await response.json();
 		dispatch(setFriends({ friends: data }));
 	};
+
 	return (
 		<FlexBetween>
 			<FlexBetween gap="1rem">
@@ -63,16 +65,18 @@ const Friend = ({ friendId, name, subtitle, userPicturePath }) => {
 					</Typography>
 				</Box>
 			</FlexBetween>
-			<IconButton
-				onClick={() => patchFriend()}
-				sx={{ backgroundColor: light, p: "0.6rem" }}
-			>
-				{isFriend ? (
-					<PersonRemoveOutlined sx={{ color: dark }} />
-				) : (
-					<PersonAddOutlined sx={{ color: dark }} />
-				)}
-			</IconButton>
+			{isCurrentUser ? null : (
+				<IconButton
+					onClick={() => patchFriend()}
+					sx={{ backgroundColor: light, p: "0.6rem" }}
+				>
+					{isFriend ? (
+						<PersonRemoveOutlined sx={{ color: dark }} />
+					) : (
+						<PersonAddOutlined sx={{ color: dark }} />
+					)}
+				</IconButton>
+			)}
 		</FlexBetween>
 	);
 };
