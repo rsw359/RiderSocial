@@ -1,4 +1,4 @@
-import { PersonAddOutlined, PersonRemoveOutlined } from "@material-ui/icons";
+import { PersonAddOutlined, PersonRemoveOutlined } from "@mui/icons-material";
 import { Box, IconButton, Typography, useTheme } from "@mui/material";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -72,7 +72,6 @@ const Friend = ({ friendId, name, subtitle, userPicturePath }) => {
 				) : (
 					<PersonAddOutlined sx={{ color: dark }} />
 				)}
-				;
 			</IconButton>
 		</FlexBetween>
 	);
