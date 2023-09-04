@@ -19,17 +19,16 @@ const AdWidget = () => {
 			<img
 				width="100%"
 				height="100%"
-				src="http://localhost:3001/assets/info4.jpeg"
+				src="https://res.cloudinary.com/dvdtehk9y/image/upload/v1692161287/GR015265.jpg"
 				alt="advertisement"
 				style={{ borderRadius: "0.75rem", margin: "0.75rem 0" }}
 			/>
 			<FlexBetween>
-				<Typography color={main}>Mika Cosmetics</Typography>
-				<Typography color={medium}>mikacosmetics.com</Typography>
+				<Typography color={main}>Chappeau Bikes</Typography>
+				<Typography color={medium}>ChappeauBikes.com</Typography>
 			</FlexBetween>
 			<Typography color={medium} m="0.5rem 0">
-				Your pathway to a more beautiful you with quality skincare products by
-				Mika Cosmetics.
+				New and Used High-End bikes, Reasonable Prices.
 			</Typography>
 		</WidgetWrapper>
 	);
