@@ -3,6 +3,7 @@ import {
 	FavoriteBorderOutlined,
 	FavoriteOutlined,
 	ShareOutlined,
+	DeleteOutlined,
 } from "@mui/icons-material";
 import { Box, Divider, IconButton, Typography, useTheme } from "@mui/material";
 import FlexBetween from "components/FlexBetween";
@@ -47,6 +48,34 @@ const PostWidget = ({
 		dispatch(setPost({ post: updatedPost }));
 	};
 
+	const handleDelete = async () => {
+		try {
+			if (!token || loggedInUserId !== postUserId) {
+				// Unauthorized: User is not logged in or not the author of the post
+				console.error("Unauthorized to delete this post.");
+				return;
+			}
+
+			const response = await fetch(`http://localhost:3001/posts/${postId}`, {
+				method: "DELETE",
+				headers: {
+					Authorization: `Bearer ${token}`,
+					"Content-Type": "application/json",
+				},
+			});
+
+			if (response.ok) {
+				// Post deleted successfully, update UI as needed
+				dispatch(setPost({ post: null }));
+			} else {
+				// Handle the case where the deletion request failed
+				console.error("Failed to delete post");
+			}
+		} catch (error) {
+			console.error("Error deleting post:", error);
+		}
+	};
+
 	return (
 		<WidgetWrapper m="2.5rem">
 			<Friend
@@ -88,10 +117,17 @@ const PostWidget = ({
 						<Typography>{comments.length}</Typography>
 					</FlexBetween>
 				</FlexBetween>
+				{/* This is where the delete button is */}
+
 				{/* This is where the share button is */}
-				<IconButton>
-					<ShareOutlined />
-				</IconButton>
+				<FlexBetween gap="0.3rem">
+					<IconButton onClick={handleDelete}>
+						<DeleteOutlined />
+					</IconButton>
+					<IconButton>
+						<ShareOutlined />
+					</IconButton>
+				</FlexBetween>
 			</FlexBetween>
 			{isComments && (
 				<Box mt="0.5rem">
