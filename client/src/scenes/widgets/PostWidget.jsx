@@ -25,12 +25,14 @@ const PostWidget = ({
 	comments,
 }) => {
 	const [isComments, setIsComments] = useState(false);
+	const [isCommenting, setIsCommenting] = useState(false);
+	const [commentText, setCommentText] = useState("");
 	const dispatch = useDispatch();
 	const token = useSelector((state) => state.token);
 	const loggedInUserId = useSelector((state) => state.user._id);
 	const isLiked = Boolean(likes[loggedInUserId]); //sets islked to true if the current user has liked the post as a bool
 	const likeCount = Object.keys(likes).length; //grabs the number of likes by the number of keys in the likes object
-
+	const toggleCommentBox = () => setIsCommenting(!isCommenting); //toggles the comment box
 	const { palette } = useTheme();
 	const primary = palette.primary.main;
 	const main = palette.primary.main;
@@ -46,6 +48,34 @@ const PostWidget = ({
 		});
 		const updatedPost = await response.json();
 		dispatch(setPost({ post: updatedPost }));
+	};
+
+	const postComment = async () => {
+		try {
+			const response = await fetch(
+				`http://localhost:3001/posts/${postId}/comment`,
+				{
+					method: "POST",
+					headers: {
+						Authorization: `Bearer ${token}`,
+						"Content-Type": "application/json",
+					},
+					body: JSON.stringify({
+						comment: commentText,
+					}),
+				}
+			);
+
+			if (response.ok) {
+				const updatedPost = await response.json();
+				dispatch(setPost({ post: updatedPost }));
+			} else {
+				console.error("Failed to add comment");
+				console.log(commentText);
+			}
+		} catch (err) {
+			console.error("Error adding comment:", err);
+		}
 	};
 
 	const handleDelete = async () => {
@@ -119,18 +149,47 @@ const PostWidget = ({
 				</FlexBetween>
 				{/* This is where the delete button is */}
 
-				{/* This is where the share button is */}
 				<FlexBetween gap="0.3rem">
-					<IconButton onClick={handleDelete}>
-						<DeleteOutlined />
-					</IconButton>
+					{loggedInUserId === postUserId && (
+						<IconButton onClick={handleDelete}>
+							<DeleteOutlined />
+						</IconButton>
+					)}
+					{/* This is where the share button is */}
 					<IconButton>
 						<ShareOutlined />
 					</IconButton>
 				</FlexBetween>
 			</FlexBetween>
+			{/* This is where the comment box is */}
 			{isComments && (
 				<Box mt="0.5rem">
+					<Typography
+						sx={{
+							color: main,
+							m: "0.5rem",
+							pl: "1rem",
+							fontSize: "15px",
+							cursor: "pointer",
+							textDecoration: "underline",
+						}}
+						onClick={toggleCommentBox}
+					>
+						Add a new comment
+					</Typography>
+					{isCommenting && (
+						<Box>
+							<input
+								type="text"
+								placeholder="Add a comment..."
+								value={commentText}
+								onChange={(e) => setCommentText(e.target.value)}
+							/>
+							<button onClick={toggleCommentBox}></button>
+							<button onClick={postComment}>Submit</button>
+						</Box>
+					)}
+					{/* This is where all comments are */}
 					{comments.map((comment, i) => (
 						<Box key={`${name}-${i}`}>
 							<Divider />
