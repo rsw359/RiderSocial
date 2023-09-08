@@ -5,7 +5,15 @@ import {
 	ShareOutlined,
 	DeleteOutlined,
 } from "@mui/icons-material";
-import { Box, Divider, IconButton, Typography, useTheme } from "@mui/material";
+import {
+	Box,
+	Divider,
+	IconButton,
+	Typography,
+	useTheme,
+	InputBase,
+	Button,
+} from "@mui/material";
 import FlexBetween from "components/FlexBetween";
 import Friend from "components/Friend";
 import WidgetWrapper from "components/WidgetWrapper";
@@ -26,7 +34,7 @@ const PostWidget = ({
 }) => {
 	const [isComments, setIsComments] = useState(false);
 	const [isCommenting, setIsCommenting] = useState(false);
-	const [commentText, setCommentText] = useState("");
+	const [comment, setComment] = useState("");
 	const dispatch = useDispatch();
 	const token = useSelector((state) => state.token);
 	const loggedInUserId = useSelector((state) => state.user._id);
@@ -52,17 +60,16 @@ const PostWidget = ({
 
 	const postComment = async () => {
 		try {
+			console.log("comment text:", comment);
 			const response = await fetch(
-				`http://localhost:3001/posts/${postId}/comment`,
+				`http://localhost:3001/posts/${postId}/comments`,
 				{
 					method: "POST",
 					headers: {
 						Authorization: `Bearer ${token}`,
 						"Content-Type": "application/json",
 					},
-					body: JSON.stringify({
-						comment: commentText,
-					}),
+					body: JSON.stringify({ comment }),
 				}
 			);
 
@@ -71,11 +78,13 @@ const PostWidget = ({
 				dispatch(setPost({ post: updatedPost }));
 			} else {
 				console.error("Failed to add comment");
-				console.log(commentText);
+				console.log(comment);
 			}
 		} catch (err) {
 			console.error("Error adding comment:", err);
 		}
+
+		toggleCommentBox();
 	};
 
 	const handleDelete = async () => {
@@ -144,7 +153,7 @@ const PostWidget = ({
 						<IconButton onClick={() => setIsComments(!isComments)}>
 							<ChatBubbleOutlineOutlined />
 						</IconButton>
-						<Typography>{comments.length}</Typography>
+						<Typography sx={{ color: primary }}>{comments.length}</Typography>
 					</FlexBetween>
 				</FlexBetween>
 				{/* This is where the delete button is */}
@@ -179,14 +188,26 @@ const PostWidget = ({
 					</Typography>
 					{isCommenting && (
 						<Box>
-							<input
-								type="text"
+							<InputBase
 								placeholder="Add a comment..."
-								value={commentText}
-								onChange={(e) => setCommentText(e.target.value)}
+								onChange={(event) => setComment(event.target.value)}
+								value={comment}
+								sx={{
+									width: "80%",
+								}}
 							/>
-							<button onClick={toggleCommentBox}></button>
-							<button onClick={postComment}>Submit</button>
+
+							<Button
+								onClick={postComment}
+								sx={{
+									color: palette.background.alt,
+									backgroundColor: palette.primary.main,
+									borderRadius: "3rem",
+									height: "1.5rem",
+								}}
+							>
+								Submit
+							</Button>
 						</Box>
 					)}
 					{/* This is where all comments are */}
