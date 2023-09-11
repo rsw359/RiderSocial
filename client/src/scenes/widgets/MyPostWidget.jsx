@@ -46,7 +46,7 @@ const MyPostWidget = ({ picturePath }) => {
 			formData.append("picturePath", image.name);
 		}
 
-		const response = await fetch(`http://44.226.145.213/posts`, {
+		const response = await fetch(`https://44.226.145.213/posts`, {
 			method: "POST",
 			headers: { Authorization: `Bearer ${token}` },
 			body: formData,
