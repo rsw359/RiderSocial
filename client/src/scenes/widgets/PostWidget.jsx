@@ -48,7 +48,7 @@ const PostWidget = ({
 
 	const patchLike = async () => {
 		const response = await fetch(
-			`https://44.226.145.213/posts/${postId}/like`,
+			`https://romance-server.onrender.com/posts/${postId}/like`,
 			{
 				method: "PATCH",
 				headers: {
@@ -66,7 +66,7 @@ const PostWidget = ({
 		try {
 			console.log("comment text:", comment);
 			const response = await fetch(
-				`https://44.226.145.213/posts/${postId}/comments`,
+				`https://romance-server.onrender.com/posts/${postId}/comments`,
 				{
 					method: "POST",
 					headers: {
@@ -99,13 +99,16 @@ const PostWidget = ({
 				return;
 			}
 
-			const response = await fetch(`https://44.226.145.213/posts/${postId}`, {
-				method: "DELETE",
-				headers: {
-					Authorization: `Bearer ${token}`,
-					"Content-Type": "application/json",
-				},
-			});
+			const response = await fetch(
+				`https://romance-server.onrender.com/posts/${postId}`,
+				{
+					method: "DELETE",
+					headers: {
+						Authorization: `Bearer ${token}`,
+						"Content-Type": "application/json",
+					},
+				}
+			);
 
 			if (response.ok) {
 				// Post deleted successfully, update UI as needed

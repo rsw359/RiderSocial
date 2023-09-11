@@ -13,7 +13,7 @@ const FriendsList = ({ userId }) => {
 
 	const getFriends = async () => {
 		const response = await fetch(
-			`https://44.226.145.213/users/${userId}/friends`,
+			`https://romance-server.onrender.com/users/${userId}/friends`,
 			{
 				method: "GET",
 				headers: { Authorization: `Bearer ${token}` },

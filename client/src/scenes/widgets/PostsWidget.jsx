@@ -9,7 +9,7 @@ const PostsWidget = ({ userId, isProfile = false }) => {
 	const token = useSelector((state) => state.token); //redux store token
 
 	const getPosts = async () => {
-		const response = await fetch("https://44.226.145.213/posts", {
+		const response = await fetch("https://romance-server.onrender.com/posts", {
 			method: "GET",
 			headers: { Authorization: `Bearer ${token}` },
 		});
@@ -19,7 +19,7 @@ const PostsWidget = ({ userId, isProfile = false }) => {
 
 	const getUserPosts = async () => {
 		const response = await fetch(
-			`https://44.226.145.213/posts/${userId}/posts`,
+			`https://romance-server.onrender.com/posts/${userId}/posts`,
 			{
 				method: "GET",
 				headers: { Authorization: `Bearer ${token}` },
