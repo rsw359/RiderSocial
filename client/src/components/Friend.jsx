@@ -6,7 +6,7 @@ import { setFriends } from "state";
 import FlexBetween from "./FlexBetween";
 import UserImage from "./UserImage";
 
-const Friend = ({ friendId, name, subtitle, userPicturePath }) => {
+const Friend = ({ friendId, name, subtitle, userPicturePath, isProfile }) => {
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 	const { _id } = useSelector((state) => state.user);
@@ -21,6 +21,7 @@ const Friend = ({ friendId, name, subtitle, userPicturePath }) => {
 
 	const isFriend = friends.find((friend) => friend._id === friendId);
 	const isCurrentUser = friendId === _id;
+
 	const patchFriend = async () => {
 		const response = await fetch(
 			`http://localhost:3001/users/${_id}/${friendId}`,

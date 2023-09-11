@@ -31,6 +31,7 @@ const PostWidget = ({
 	userPicturePath,
 	likes,
 	comments,
+	isProfile,
 }) => {
 	const [isComments, setIsComments] = useState(false);
 	const [isCommenting, setIsCommenting] = useState(false);
@@ -122,6 +123,7 @@ const PostWidget = ({
 				name={name}
 				subtitle={location}
 				userPicturePath={userPicturePath}
+				isProfile={isProfile}
 			/>
 			<Typography color={main} sx={{ mt: "1rem" }}>
 				{description}

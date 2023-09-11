@@ -36,7 +36,6 @@ const PostsWidget = ({ userId, isProfile = false }) => {
 			getPosts();
 		}
 	}, []); //eslint-disable-line react-hooks/exhaustive-deps
-	console.log(posts, "posts widget line 39");
 
 	return (
 		<>
@@ -64,6 +63,7 @@ const PostsWidget = ({ userId, isProfile = false }) => {
 						userPicturePath={userPicturePath}
 						likes={likes}
 						comments={comments}
+						isProfile={isProfile}
 					/>
 				)
 			)}
