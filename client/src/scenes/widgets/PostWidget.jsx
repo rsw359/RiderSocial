@@ -47,14 +47,17 @@ const PostWidget = ({
 	const main = palette.primary.main;
 
 	const patchLike = async () => {
-		const response = await fetch(`http://44.226.145.213/posts/${postId}/like`, {
-			method: "PATCH",
-			headers: {
-				Authorization: `Bearer ${token}`,
-				"Content-Type": "application/json",
-			},
-			body: JSON.stringify({ userId: loggedInUserId }),
-		});
+		const response = await fetch(
+			`https://44.226.145.213/posts/${postId}/like`,
+			{
+				method: "PATCH",
+				headers: {
+					Authorization: `Bearer ${token}`,
+					"Content-Type": "application/json",
+				},
+				body: JSON.stringify({ userId: loggedInUserId }),
+			}
+		);
 		const updatedPost = await response.json();
 		dispatch(setPost({ post: updatedPost }));
 	};
@@ -63,7 +66,7 @@ const PostWidget = ({
 		try {
 			console.log("comment text:", comment);
 			const response = await fetch(
-				`http://44.226.145.213/posts/${postId}/comments`,
+				`https://44.226.145.213/posts/${postId}/comments`,
 				{
 					method: "POST",
 					headers: {
@@ -96,7 +99,7 @@ const PostWidget = ({
 				return;
 			}
 
-			const response = await fetch(`http://44.226.145.213/posts/${postId}`, {
+			const response = await fetch(`https://44.226.145.213/posts/${postId}`, {
 				method: "DELETE",
 				headers: {
 					Authorization: `Bearer ${token}`,
