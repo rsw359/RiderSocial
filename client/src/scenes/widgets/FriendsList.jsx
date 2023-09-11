@@ -43,6 +43,7 @@ const FriendsList = ({ userId }) => {
 					{friends.map((friend) => (
 						<Friend
 							key={friend._id}
+							userId={userId}
 							friendId={friend._id}
 							name={`${friend.firstName} ${friend.lastName}`}
 							subtitle={friend.occupation}

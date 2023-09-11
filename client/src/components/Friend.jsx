@@ -6,7 +6,7 @@ import { setFriends } from "state";
 import FlexBetween from "./FlexBetween";
 import UserImage from "./UserImage";
 
-const Friend = ({ friendId, name, subtitle, userPicturePath }) => {
+const Friend = ({ friendId, name, subtitle, userPicturePath, isProfile }) => {
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 	const { _id } = useSelector((state) => state.user);
@@ -20,6 +20,7 @@ const Friend = ({ friendId, name, subtitle, userPicturePath }) => {
 	const medium = palette.neutral.medium;
 
 	const isFriend = friends.find((friend) => friend._id === friendId);
+	const isCurrentUser = friendId === _id;
 
 	const patchFriend = async () => {
 		const response = await fetch(
@@ -63,16 +64,18 @@ const Friend = ({ friendId, name, subtitle, userPicturePath }) => {
 					</Typography>
 				</Box>
 			</FlexBetween>
-			<IconButton
-				onClick={() => patchFriend()}
-				sx={{ backgroundColor: light, p: "0.6rem" }}
-			>
-				{isFriend ? (
-					<PersonRemoveOutlined sx={{ color: dark }} />
-				) : (
-					<PersonAddOutlined sx={{ color: dark }} />
-				)}
-			</IconButton>
+			{!isCurrentUser && (
+				<IconButton
+					onClick={() => patchFriend()}
+					sx={{ backgroundColor: light, p: "0.6rem" }}
+				>
+					{isFriend ? (
+						<PersonRemoveOutlined sx={{ color: dark }} />
+					) : (
+						<PersonAddOutlined sx={{ color: dark }} />
+					)}
+				</IconButton>
+			)}
 		</FlexBetween>
 	);
 };
