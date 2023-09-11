@@ -47,7 +47,7 @@ const PostWidget = ({
 	const main = palette.primary.main;
 
 	const patchLike = async () => {
-		const response = await fetch(`http://localhost:3001/posts/${postId}/like`, {
+		const response = await fetch(`http://44.226.145.213/posts/${postId}/like`, {
 			method: "PATCH",
 			headers: {
 				Authorization: `Bearer ${token}`,
@@ -63,7 +63,7 @@ const PostWidget = ({
 		try {
 			console.log("comment text:", comment);
 			const response = await fetch(
-				`http://localhost:3001/posts/${postId}/comments`,
+				`http://44.226.145.213/posts/${postId}/comments`,
 				{
 					method: "POST",
 					headers: {
@@ -96,7 +96,7 @@ const PostWidget = ({
 				return;
 			}
 
-			const response = await fetch(`http://localhost:3001/posts/${postId}`, {
+			const response = await fetch(`http://44.226.145.213/posts/${postId}`, {
 				method: "DELETE",
 				headers: {
 					Authorization: `Bearer ${token}`,
