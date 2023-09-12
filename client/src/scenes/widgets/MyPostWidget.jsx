@@ -25,7 +25,8 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setPosts } from "state";
 
-const MyPostWidget = ({ picturePath }) => {
+const MyPostWidget = ({ picturePath, isProfile }) => {
+	console.log("isProfile:", isProfile);
 	const dispatch = useDispatch();
 	const [isImage, setIsImage] = useState(false);
 	const [image, setImage] = useState(null);
@@ -53,6 +54,30 @@ const MyPostWidget = ({ picturePath }) => {
 		});
 		const posts = await response.json();
 		dispatch(setPosts({ posts }));
+		if (isProfile) {
+			const profilePostsResponse = await fetch(
+				`http://localhost:3001/posts/${_id}/posts`,
+				{
+					method: "GET",
+					headers: {
+						Authorization: `Bearer ${token}`,
+						"Content-Type": "application/json",
+					},
+				}
+			);
+			const profilePosts = await profilePostsResponse.json();
+			dispatch(setPosts({ posts: profilePosts }));
+		} else if (!isProfile) {
+			const allPostsResponse = await fetch(`http://localhost:3001/posts`, {
+				method: "GET",
+				headers: {
+					Authorization: `Bearer ${token}`,
+					"Content-Type": "application/json",
+				},
+			});
+			const allPosts = await allPostsResponse.json();
+			dispatch(setPosts({ posts: allPosts }));
+		}
 		setImage(null);
 		setPost("");
 	};

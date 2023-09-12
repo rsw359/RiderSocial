@@ -33,8 +33,9 @@ export const authSlice = createSlice({
 			state.posts = action.payload.posts;
 		},
 		setPost: (state, action) => {
-			//action.payload.post is null when deleting a post, so we need this conditional
+			//conditional for the delete function setting the post data to null
 			if (action.payload.post === null) {
+				// Handle the case where the post is null (e.g., post was deleted)
 				state.posts = state.posts.filter(
 					(post) => post._id !== action.payload.postId
 				);

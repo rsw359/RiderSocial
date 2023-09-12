@@ -20,6 +20,7 @@ import WidgetWrapper from "components/WidgetWrapper";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setPost } from "state";
+import { setPosts } from "state";
 
 const PostWidget = ({
 	postId,
@@ -33,6 +34,7 @@ const PostWidget = ({
 	comments,
 	isProfile,
 }) => {
+	console.log("isProfile post widget:", isProfile);
 	const [isComments, setIsComments] = useState(false);
 	const [isCommenting, setIsCommenting] = useState(false);
 	const [comment, setComment] = useState("");
@@ -91,7 +93,6 @@ const PostWidget = ({
 	const handleDelete = async () => {
 		try {
 			if (!token || loggedInUserId !== postUserId) {
-				// Unauthorized: User is not logged in or not the author of the post
 				console.error("Unauthorized to delete this post.");
 				return;
 			}
@@ -107,6 +108,30 @@ const PostWidget = ({
 			if (response.ok) {
 				// Post deleted successfully, update UI as needed
 				dispatch(setPost({ post: null }));
+				if (isProfile) {
+					const updatedResponse = await fetch(
+						`http://localhost:3001/posts/${postUserId}/posts`,
+						{
+							method: "GET",
+							headers: {
+								Authorization: `Bearer ${token}`,
+								"Content-Type": "application/json",
+							},
+						}
+					);
+					const updatedPosts = await updatedResponse.json();
+					dispatch(setPosts({ posts: updatedPosts }));
+				} else {
+					const updatedResponse = await fetch("http://localhost:3001/posts", {
+						method: "GET",
+						headers: {
+							Authorization: `Bearer ${token}`,
+							"Content-Type": "application/json",
+						},
+					});
+					const updatedPosts = await updatedResponse.json();
+					dispatch(setPosts({ posts: updatedPosts }));
+				}
 			} else {
 				// Handle the case where the deletion request failed
 				console.error("Failed to delete post");
