@@ -53,7 +53,7 @@ const ProfilePage = () => {
 					mt={isNonMobileScreens ? undefined : "2rem"}
 				>
 					{loggedInUserId === userId && (
-						<MyPostWidget picturePath={user.picturePath} />
+						<MyPostWidget picturePath={user.picturePath} isProfile /> //this instance is on the profile page, so only want to call the get user posts when updating
 					)}
 					<Box m="2rem 0" />
 					<PostsWidget userId={userId} isProfile />
