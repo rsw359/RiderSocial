@@ -34,7 +34,6 @@ const PostWidget = ({
 	comments,
 	isProfile,
 }) => {
-	console.log("isProfile post widget:", isProfile);
 	const [isComments, setIsComments] = useState(false);
 	const [isCommenting, setIsCommenting] = useState(false);
 	const [comment, setComment] = useState("");
@@ -63,7 +62,6 @@ const PostWidget = ({
 
 	const postComment = async () => {
 		try {
-			console.log("comment text:", comment);
 			const response = await fetch(
 				`http://localhost:3001/posts/${postId}/comments`,
 				{
@@ -81,7 +79,6 @@ const PostWidget = ({
 				dispatch(setPost({ post: updatedPost }));
 			} else {
 				console.error("Failed to add comment");
-				console.log(comment);
 			}
 		} catch (err) {
 			console.error("Error adding comment:", err);

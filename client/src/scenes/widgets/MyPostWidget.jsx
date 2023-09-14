@@ -1,10 +1,7 @@
 import {
 	EditOutlined,
 	DeleteOutlined,
-	AttachFileOutlined,
-	GifBoxOutlined,
 	ImageOutlined,
-	MicOutlined,
 	MoreHorizOutlined,
 } from "@mui/icons-material";
 import {
@@ -26,7 +23,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { setPosts } from "state";
 
 const MyPostWidget = ({ picturePath, isProfile }) => {
-	console.log("isProfile:", isProfile);
 	const dispatch = useDispatch();
 	const [isImage, setIsImage] = useState(false);
 	const [image, setImage] = useState(null);
@@ -157,22 +153,7 @@ const MyPostWidget = ({ picturePath, isProfile }) => {
 				</FlexBetween>
 
 				{isNonMobileScreens ? (
-					<>
-						<FlexBetween gap="0.25rem">
-							<GifBoxOutlined sx={{ color: mediumMain }} />
-							<Typography color={mediumMain}>Clip</Typography>
-						</FlexBetween>
-
-						<FlexBetween gap="0.25rem">
-							<AttachFileOutlined sx={{ color: mediumMain }} />
-							<Typography color={mediumMain}>Attachment</Typography>
-						</FlexBetween>
-
-						<FlexBetween gap="0.25rem">
-							<MicOutlined sx={{ color: mediumMain }} />
-							<Typography color={mediumMain}>Audio</Typography>
-						</FlexBetween>
-					</>
+					<></>
 				) : (
 					<FlexBetween>
 						<MoreHorizOutlined sx={{ color: mediumMain }} />
