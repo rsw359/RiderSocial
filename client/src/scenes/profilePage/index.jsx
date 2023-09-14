@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import Navbar from "scenes/navbar";
-import FriendsList from "scenes/widgets/FriendsList";
+// import FriendsList from "scenes/widgets/FriendsList";
 import MyPostWidget from "scenes/widgets/MyPostWidget";
 import PostsWidget from "scenes/widgets/PostsWidget";
 import UserWidget from "scenes/widgets/UserWidget";
@@ -31,8 +31,7 @@ const ProfilePage = () => {
 	}, []); // eslint-disable-line react-hooks/exhaustive-deps
 
 	if (!user) return null;
-	console.log("userId:", userId);
-	console.log("user:", user);
+
 	return (
 		<Box>
 			<Navbar />

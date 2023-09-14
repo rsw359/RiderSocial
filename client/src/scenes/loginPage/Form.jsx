@@ -97,7 +97,6 @@ const Form = () => {
 				})
 			);
 			navigate("/home");
-			console.log("loggedIn", loggedIn);
 		}
 	};
 
