@@ -43,15 +43,8 @@ const UserWidget = ({ userId, picturePath }) => {
 		return null;
 	}
 
-	const {
-		firstName,
-		lastName,
-		location,
-		occupation,
-		viewedProfile,
-		impressions,
-		friends,
-	} = user;
+	const { firstName, lastName, location, occupation, bike, strava, friends } =
+		user;
 
 	return (
 		<WidgetWrapper>
@@ -98,17 +91,19 @@ const UserWidget = ({ userId, picturePath }) => {
 				<Divider />
 				<Box display="flex" alignItems="center" gap="1rem" mt="1rem">
 					<PedalBikeOutlined fontSize="large" sx={{ color: main }} />
-					<Typography color={medium}>{occupation}</Typography>
+					{bike ? (
+						<Typography color={medium}>{bike}</Typography>
+					) : (
+						<Typography color={medium}>Just Legs</Typography>
+					)}
 				</Box>
 			</Box>
 			<Divider />
 
 			{/* THIRD ROW */}
-
-			{/* FOURTH ROW */}
 			<Box p="1rem 0">
 				<Typography fontSize="1rem" color={main} fontWeight="500" mb="1rem">
-					Strava Account
+					Strava Profile
 				</Typography>
 
 				<FlexBetween gap="1rem" mb="0.5rem">
@@ -118,10 +113,21 @@ const UserWidget = ({ userId, picturePath }) => {
 							alt="strava logo"
 						/>
 						<Box>
-							<Typography color={main} fontWeight="500">
-								Strava
-							</Typography>
-							<Typography color={medium}>Link</Typography>
+							{strava ? (
+								<a
+									href={strava}
+									target="_blank"
+									rel="noopener noreferrer"
+									style={{
+										textDecoration: "none",
+										color: main,
+									}}
+								>
+									<Typography color="medium">{strava}</Typography>
+								</a>
+							) : (
+								<Typography color={medium}>None yet</Typography>
+							)}
 						</Box>
 					</FlexBetween>
 					<EditOutlined sx={{ color: main }} />

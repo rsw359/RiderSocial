@@ -23,6 +23,8 @@ const registerSchema = yup.object().shape({
 	password: yup.string().required("required"),
 	location: yup.string().required("required"),
 	occupation: yup.string().required("required"),
+	bikes: yup.string(),
+	strava: yup.string(),
 	picture: yup.string().required("required"),
 });
 
@@ -37,6 +39,8 @@ const initialValuesRegister = {
 	email: "",
 	password: "",
 	location: "",
+	bike: "",
+	strava: "",
 	occupation: "",
 	picture: "",
 };
@@ -176,6 +180,38 @@ const Form = () => {
 									helperText={touched.occupation && errors.occupation}
 									sx={{ gridColumn: "span 4" }}
 								/>
+
+								<TextField
+									label="Bike Model"
+									onBlur={handleBlur}
+									onChange={handleChange}
+									value={values.bike}
+									name="bike"
+									error={Boolean(touched.bike) && Boolean(errors.bike)}
+									helperText={touched.bike && errors.bike}
+									sx={{ gridColumn: "span 4" }}
+								/>
+								<Box display="grid" gap="0" sx={{ gridColumn: "span 4" }}>
+									<Typography
+										sx={{
+											width: "30rem",
+											color: palette.neutral.medium,
+											mb: ".4rem",
+										}}
+									>
+										Grab the url from the profile page of your Strava account,
+										if you have one
+									</Typography>
+									<TextField
+										label="Strava Profile"
+										onBlur={handleBlur}
+										onChange={handleChange}
+										value={values.strava}
+										name="strava"
+										error={Boolean(touched.strava) && Boolean(errors.strava)}
+										helperText={touched.strava && errors.strava}
+									/>
+								</Box>
 								<Box
 									gridColumn="span 4"
 									border={`1px solid ${palette.neutral.medium}`}
