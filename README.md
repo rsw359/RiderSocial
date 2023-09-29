@@ -1,12 +1,12 @@
 # The Romance
 
-## **Cycling Blog App**
+## Cycling Blog App
 
-### **Description**
+### Description
 
 **The Romance** is a cycling-focused blog app that allows users to share their cycling experiences, adventures, and stories. Whether you're a seasoned cyclist or just starting out, The Romance provides a platform to connect with fellow riders and share your passion for cycling.
 
-### **Features**
+### Features
 
 - Create and publish blog posts with text and images.
 - View a feed of posts from all users.
@@ -19,7 +19,7 @@
 - Stretch Goals:
   - Integrate Strava API for posting ride segments and ride data.
 
-## **Technologies Used**
+## Technologies Used
 
 - MERN Stack (MongoDB, Express.js, React, Node.js)
 - Redux for state management
@@ -29,7 +29,7 @@
 - Render (Backend Deployment)
 - Strava API (Stretch Goal)
 
-## **Getting Started**
+## Getting Started
 
 To run this project locally, follow these steps:
 
@@ -47,7 +47,7 @@ To run this project locally, follow these steps:
 5. Start the backend server: **`npm start`** (or **`yarn start`**) in the **`backend`** directory.
 6. Start the frontend application: **`npm start`** (or **`yarn start`**) in the **`frontend`** directory.
 
-## **Usage**
+## Usage
 
 - Register or log in to access the app.
 - Create new posts and add images to share your cycling experiences.
@@ -56,20 +56,20 @@ To run this project locally, follow these steps:
 - View posts from specific users or all users in the feed.
 - Add likes to posts
 
-## **Demo**
+## Demo
 
 Check out the live demo at **[rider-social.vercel.app](https://rider-social.vercel.app/)**.
 
-## **Future Enhancements**
+## Future Enhancements
 
 - Implement Strava API integration for additional ride data, such as route maps and segments.
 - Incorporate additional social features for a richer user experience. (e.g. notifications, video uploads, ride scheduling with invites)
 
-## **License**
+## License
 
 This project is licensed under the MIT License
 
-## **Contact**
+## Contact
 
 For inquiries, please contact me by [Email](mailto:rsw359@gmail.com)
 
