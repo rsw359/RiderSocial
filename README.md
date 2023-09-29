@@ -18,6 +18,11 @@
   - Basic CRUD operations for posts and user profiles.
 - Stretch Goals:
   - Integrate Strava API for posting ride segments and ride data.
+ 
+- Coming Soon
+  - Add Names to Comments
+  - Post Search
+  - About Page
 
 ## Technologies Used
 
