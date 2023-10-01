@@ -59,6 +59,7 @@ export const themeSettings = (mode) => {
 						primary: {
 							dark: colorTokens.primary[700],
 							main: colorTokens.primary[500],
+							medium: colorTokens.primary[300],
 							light: colorTokens.primary[50],
 						},
 						neutral: {
