@@ -40,6 +40,7 @@ const PostWidget = ({
 	const dispatch = useDispatch();
 	const token = useSelector((state) => state.token);
 	const loggedInUserId = useSelector((state) => state.user._id);
+	const commenter = useSelector((state) => state.user.firstName);
 	const isLiked = Boolean(likes[loggedInUserId]); //sets islked to true if the current user has liked the post as a bool
 	const likeCount = Object.keys(likes).length; //grabs the number of likes by the number of keys in the likes object
 	const toggleCommentBox = () => setIsCommenting(!isCommenting); //toggles the comment box
@@ -73,7 +74,7 @@ const PostWidget = ({
 						Authorization: `Bearer ${token}`,
 						"Content-Type": "application/json",
 					},
-					body: JSON.stringify({ comment }),
+					body: JSON.stringify({ comment: `${commenter} says: ${comment}` }),
 				}
 			);
 
