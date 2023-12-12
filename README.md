@@ -1,6 +1,6 @@
 # The Romance
 
-## Cycling Blog App | [site](https://www.rider-social.vercel.app)
+## Cycling Blog App | [site](https://rider-social.vercel.app)
 
 ### Description
 
