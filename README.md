@@ -6,6 +6,8 @@
 
 **The Romance** is a cycling-focused blog app that allows users to share their cycling experiences, adventures, and stories. Whether you're a seasoned cyclist or just starting out, The Romance provides a platform to connect with fellow riders and share your passion for cycling.
 
+- This site is hosted on Vercel using Render for the server. Ocassionally, Render spins its services down, so if login is unsuccessful give it just a minute or two. 
+
 ### Features
 
 - Create and publish blog posts with text and images.
